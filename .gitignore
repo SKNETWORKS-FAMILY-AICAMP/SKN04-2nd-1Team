@@ -158,7 +158,7 @@ cython_debug/
 # custom
 events.*
 *.pth
-*.yaml
+hparams.yaml
 *.ckpt
 
 # PyCharm
