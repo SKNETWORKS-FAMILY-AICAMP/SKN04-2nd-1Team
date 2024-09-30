@@ -1,4 +1,98 @@
-# SKN04-2nd-1Team
+# ✌️SKN04-2nd-1Team
+
+# 가입 고객 이탈 예측
+<p align="center"><img src="https://cdn.imweb.me/upload/S20240314bd10436a7991a/41a9769cc44e6.png" width="1000" height="300"/></p>
+
+<hr>
+
+## 👍정훈대장👍
+ 
+### 🤦‍♂️ 팀원
+
+<p align="center">
+	<img src="https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F3236aab6-3254-4ec4-98f5-d41120a798ec.jpg" width="200" height="200"/>
+	<img src="https://search.pstatic.net/common?type=n&size=150x168&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F34d3f099-90c9-4a5c-9efe-1ea266c86603.jpg" width=200" height="200"/>
+	<img src="https://search.pstatic.net/common?type=n&size=150x168&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa5b8b0db-5d9b-41fa-a213-c9fab714a098.jpg" width="200" height="200"/>
+	<img src="https://search.pstatic.net/common?type=n&size=150x168&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F92efb510-4b7a-4198-a781-f15987fcbe4c.jpg" width="200" height="200"/>
+</p>
+
+<div align="center">
+
+	
+|   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  👼 박병헌  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 👼 김현재  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 👼 변가원  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 👼 김정훈  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;   | 
+|------------------------------------------|--------------------------------------|------------------------------------------|-----------------------------------|
+</div>
+
+<hr>
+
+### 👨‍🏫 프로젝트 개요
+  기업에게 고객 이탈은 중요한 문제입니다. <br>
+  다른 경쟁사로 고객이 이동하는 행위는 기업 수익성과 관련하여 큰 문제이기 때문에 고객 이탈을 사전에 예방해야합니다. 그렇기에 저희 팀은 주어진 고객 데이터를 기반하여 고객이탈 예측 모델을 제작하여 사전에 이탈 가능성이 높은 고객을 찾아 예방하고자 합니다.
+
+<hr>
+
+### 👩‍🏫 프로젝트 목표
+고객 이탈 예측 모델을 통해 이탈할 가능성이 높은 고객을 잡아낼 수 있도록 합니다.
+
+
+<hr>
+
+### 🔨 기술 스택
+<div>
+<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
+<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+</div>
+
+<hr>
+
+### Prerequisites
+
+```cmd
+pip install pandas 
+pip install numpy 
+pip install scikit-learn
+pip install torch
+pip install pytorch-lightning
+pip install nni
+```
+
+<hr>
+
+### Usage
+
+```cmd
+python train.py
+```
+
+<hr> 
+
+### Data
+
+고객 데이터 중 <b>Churn</b>(고객 이탈 여부), <b>TotalRecurringCharge</b>(고객의 월 정기 요금),  <b>MonthsInService</b>(고객이 서비스를 사용한 기간), 
+<b>CurrentEquipmentDays</b>(현재 기기를 사용한 일 수), <b>CreditRating</b>(고객의 신용 등급), <b>RetentionCalls</b>(고객 유지를 위한 전화 횟수), 
+<b>RespondsToMailOffers</b>(고객이 우편 제안에 응답했는지 여부), <b>BuysViaMailOrder</b>(우편 주문을 통해 구매하는지 여부), <b>HandsetWebCapable</b>(웹 접속이 가능한 핸드셋을 사용 중인지 여부) 데이터를 사용하였습니다.
+
+ <h3> 1. 고객 충성도 레이블 (Customer Loyalty)</h3>
+ 'MonthsInService'와 'RetentionCalls'을 기반으로 고객이 얼마나 오랜 기간 동안 서비스에 머물렀는지, 그리고 고객 유지 노력의 결과를 반영
+
+ <h3>2. 서비스 사용 기간 레이블 (Equipment Usage Duration)</h3>
+ 'CurrentEquipmentDays'를 사용해 서비스를 얼마나 사용하고 있는지 반영
+ <h3>3. 요금 부담 레이블 (Charge Burden)</h3>
+ 'TotalRecurringCharge'를 기준으로 요금 부담이 높은지 낮은지를 분류
+ <h3>4. 신용 등급 레이블 (Credit Rating Category)</h3>
+ 'CreditRating'을 기준으로 신용 등급을 두 그룹으로 나눔
+ <h3>5. 구매 및 메일 응답 행동 (Purchase and Mail Response Behavior)</h3>
+ 'BuysViaMailOrder'와 'RespondsToMailOffers'를 결합하여 고객의 마케팅 참여도 파악
+ <h3>6. 핸드셋 웹 사용 가능 여부 (Handset Web Capability)</h3>
+ 'HandsetWebCapable'을 사용하여 핸드셋이 웹 사용 가능한지 여부를 분류
+<br><br><br>
+위와 같은 전처리를 통해 유의미한 결과를 도출하고자 하였습니다.
+
+
+<hr>
+
+# EDA
 
 ## 데이터 분석 및 ML
 
@@ -150,7 +244,7 @@ Yes는 35507개, No는 14245개 이고, 35507/(14245+35507) = 0.71 이다.
 2. 데이터 양이 Churn == 'Yes' 로 치우쳐있다.
 
 1.에서 데이터가 얼마나 엉켜있는지 확인 하기 위해 T-SNE 방법을 이용하여 시각화 하였다.
-<img src="./tsen_image/tsen.png" width = 800>
+<img src="./tsen_image/tsen.png" width = 500>
 노란색: Yes, 파란색: No
 
 분리가 안되는 데이터를 확인 할 수 있다.
@@ -160,4 +254,30 @@ Yes는 35507개, No는 14245개 이고, 35507/(14245+35507) = 0.71 이다.
 <img src="./smote_image/smote.png" width = 800>
 이미지 출처:https://www.kaggle.com/code/rafjaa/resampling-strategies-for-imbalanced-datasets
 
+
+
 두 가지의 데이터 문제로 인하여 ML, DL 모두 정확도 약 0.71에서 개선되지 않았고, Yes에 대한 Recall이 매우 낮은 상황을 빠져나가지 못했다. 
+
+
+<hr>
+
+## 수행 결과
+데이터 불균형 문제로 실제 고객 이탈자를 이탈자로 구분하지 못하고 쏼라쏼라
+
+<hr>
+
+## 한 줄 회고
+<br>
+
+<h3>👼박병헌</h3>
+<hr> 
+<br><br>
+<h3>👼김현재</h3>
+<hr> 
+ML이고 DL이고 데이터 전처리가 안되면 아무것도 못하는구나 난 꼭 이 일에 전문가가 되겠다는 마음을 가졌다.<br><br>
+<h3>👼변가원</h3>
+<hr> 
+ 수업시간 때 배운 내용들을 직접 적용해보면서 실제로 ML, DL에 대해 이해할 수 있는 경험을 할 수 있었습니다.<br><br>
+<h3>👼김정훈</h3>
+<hr> 
+데이터 불균형 문제는 쉽지 않았습니다. 내가 원하는 결과를 내기 위해서 모델을 바꾸고 레이어를 늘려보고 다양한 방법을 시도해 보았지만 좋은 결과를 내는 것은 힘들었습니다. 이것이 인생이구나를 느꼈습니다.<br><br>
