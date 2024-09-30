@@ -112,3 +112,50 @@ data['HandsetWebCapability'] = np.where(
 
 <img src="./ML_NewFeature/Model_res.png" width = 500>
 
+### New feature model_2
+
+위에서 선정한 feature들 중 확연한 분포 차이를 보이는 feature를 재선정하여 4개의 컬럼으로 줄였다.
+4개의 feature는 'TotlaRecurringCharge' 'MonthsInService' 'TotalRecurringCharge' 'CustomerLoyalty' 로 하였다.
+
+다시한번 분포를 보면 다음과 같다.
+
+<img src="./ML_base_image/TotlaRecurringCharge.png" width = 500>
+
+<img src="./ML_base_image/MonthsInService.png" width = 500>
+
+<img src="./ML_base_image/CurrentEquipmentDays.png" width = 500>
+
+<img src="./ML_NewFeature/CustomerLoyalty.png" width = 500>
+
+동일하게 lightgbm 모델을 학습하여 다음과 같은 결과를 얻었다.
+
+<img src="./ML_NewFeature2/newfeature_2.png" width = 500>
+
+결과는 변하지 않았다. 
+
+
+### 결론
+
+정확도는 0.71로 나오는데, 이것은 사실 Churn 컬럼의 Yes, No 비율과 같다.
+
+Yes는 35507개, No는 14245개 이고, 35507/(14245+35507) = 0.71 이다.
+모델에서 Yes 와 No를 분리할수 있는 데이터를 학습하지 못했고, 이는 데이터가 Churn를 예측 할 수 있도록 데이터가 분되어있지 않다는 것을 의미한다. 
+
+또한, 데이터의 크기가 Yes로 치우쳐져 거의 모든 예측을 Yes로 하게되는 데이터 불균형 문제도 가지고 있다.
+
+두가지 문제로 정리하면,
+
+1. Churn별 데이터의 분포가 분리되지 않는다.
+
+2. 데이터 양이 Churn == 'Yes' 로 치우쳐있다.
+
+1.에서 데이터가 얼마나 엉켜있는지 확인 하기 위해 T-SNE 방법을 이용하여 시각화 하였다.
+<img src="./tsen_image/tsen.png" width = 800>
+노란색: Yes, 파란색: No
+
+분리가 안되는 데이터를 확인 할 수 있다.
+
+2.의 문제를 해결하기 위해서는 Over Sampling 방법이 있다. 대표적으로 파이썬에서 smote(Synthetic Minority Over-sampling Technique) 방법이 있다. smote는 최근접 방법을 이용해서 새로운 데이터를 생성해준다. smote을 사용할때 유의 할 점은 precision과 recall 이다. recall를 증가시킬 수 있지만 precision이 떨어지기 때문에 잘 생각해서 사용해야된다.
+
+<img src="./smote_image/smote.png" width = 800>
+이미지 출처:https://www.kaggle.com/code/rafjaa/resampling-strategies-for-imbalanced-datasets
