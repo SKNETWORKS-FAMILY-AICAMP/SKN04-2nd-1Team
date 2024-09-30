@@ -9,6 +9,7 @@ import random
 import json
 import nni
 
+from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import train_test_split
 
 import torch
@@ -27,10 +28,8 @@ def main(configs):
         'BlockedCalls', 
         'PrizmCode', # 인구통계 세분화 코드라 삭제
         'TruckOwner', # 자동차 오토바이 유무라서 삭제
-        'RVOwner',
         'OwnsMotorcycle',
         'OwnsComputer', # 컴퓨터 유무 삭제
-        'HandsetRefurbished', #
         'OffPeakCallsInOut',
         'OptOutMailings',
         'NonUSTravel',# 미국 여행여부 삭제
@@ -62,6 +61,7 @@ def main(configs):
         np.where(data.AgeHH2 < 60, 50, 60)))))
 
     data.CreditRating = data.CreditRating.str[0].astype(int) # 신용등급 숫자로 변경
+
 
     # 1. 고객 충성도 레이블 (Customer Loyalty)
     # 'MonthsInService'와 'RetentionCalls'을 기반으로 고객이 얼마나 오랜 기간 동안 서비스에 머물렀는지, 그리고 고객 유지 노력의 결과를 반영
@@ -109,8 +109,13 @@ def main(configs):
         data['HandsetWebCapable'] == 'Yes', 
         'WebCapable', 'NonWebCapable'
     )
-
-    data, _ = convert_category_into_integer(data, (data.loc[:, data.columns]))
+    category_columns = ['ServiceArea','ChildrenInHH','HandsetRefurbished','HandsetWebCapable',
+                        'RVOwner','Homeownership','BuysViaMailOrder','RespondsToMailOffers',
+                        'HasCreditCard','NewCellphoneUser','HandsetPrice','MadeCallToRetentionTeam',
+                        'Occupation','MaritalStatus','CustomerLoyalty','EquipmentUsageDuration','ChargeBurden',
+                        'CreditCategory','MarketingEngagement','HandsetWebCapability']
+    
+    data, _ = convert_category_into_integer(data, (category_columns))
     data = data.astype(np.float32)
 
     # 학습, 검증, 테스트 데이터셋 분할
@@ -124,6 +129,20 @@ def main(configs):
 
     costomer_data_module = CostomerDataModule(batch_size=configs.get('batch_size'))
     costomer_data_module.prepare(train_dataset, valid_dataset, test_dataset)
+
+    robust_scaler = RobustScaler()
+    
+    need_scale_cols = data.columns.difference(category_columns + ['RetentionCalls', 'RetentionOffersAccepted', 'IncomeGroup'])
+    
+    train.loc[:, need_scale_cols] = \
+        robust_scaler.fit_transform(train.loc[:, need_scale_cols])
+
+    # 검증 데이터와 테스트 데이터의 열을 훈련 데이터의 통계로 표준화
+    valid.loc[:, need_scale_cols] = \
+        robust_scaler.transform(valid.loc[:, need_scale_cols])
+
+    test.loc[:, need_scale_cols] = \
+        robust_scaler.transform(test.loc[:, need_scale_cols])
 
     configs.update({'input_dim': len(data.columns)-1})
     model = Model(configs)
