@@ -159,3 +159,5 @@ Yes는 35507개, No는 14245개 이고, 35507/(14245+35507) = 0.71 이다.
 
 <img src="./smote_image/smote.png" width = 800>
 이미지 출처:https://www.kaggle.com/code/rafjaa/resampling-strategies-for-imbalanced-datasets
+
+두 가지의 데이터 문제로 인하여 ML, DL 모두 정확도 약 0.71에서 개선되지 않았고, Yes에 대한 Recall이 매우 낮은 상황을 빠져나가지 못했다. 
