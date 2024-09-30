@@ -8,6 +8,7 @@ import numpy as np
 import random
 import json
 import nni
+import os
 
 from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import train_test_split
@@ -28,8 +29,10 @@ def main(configs):
         'BlockedCalls', 
         'PrizmCode', # 인구통계 세분화 코드라 삭제
         'TruckOwner', # 자동차 오토바이 유무라서 삭제
+        'RVOwner',
         'OwnsMotorcycle',
         'OwnsComputer', # 컴퓨터 유무 삭제
+        'HandsetRefurbished', #
         'OffPeakCallsInOut',
         'OptOutMailings',
         'NonUSTravel',# 미국 여행여부 삭제
@@ -109,8 +112,8 @@ def main(configs):
         data['HandsetWebCapable'] == 'Yes', 
         'WebCapable', 'NonWebCapable'
     )
-    category_columns = ['ServiceArea','ChildrenInHH','HandsetRefurbished','HandsetWebCapable',
-                        'RVOwner','Homeownership','BuysViaMailOrder','RespondsToMailOffers',
+    category_columns = ['ServiceArea','ChildrenInHH','HandsetWebCapable',
+                        'Homeownership','BuysViaMailOrder','RespondsToMailOffers',
                         'HasCreditCard','NewCellphoneUser','HandsetPrice','MadeCallToRetentionTeam',
                         'Occupation','MaritalStatus','CustomerLoyalty','EquipmentUsageDuration','ChargeBurden',
                         'CreditCategory','MarketingEngagement','HandsetWebCapability']
@@ -206,5 +209,8 @@ if __name__ == '__main__':
         torch.cuda.manual_seed_all(seed)
         torch.backends.cudnn.deterministic = False
         torch.backends.cudnn.benchmark = True
+
+    if os.path.isdir('./model') == False :
+        os.mkdir('./model')
     
     main(configs)
