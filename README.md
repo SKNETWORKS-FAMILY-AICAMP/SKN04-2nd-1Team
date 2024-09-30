@@ -19,7 +19,7 @@
 <div align="center">
 
 	
-|   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;👼 박병헌  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;👼 김현재  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;👼 변가원  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;👼 김정훈  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;   | 
+|   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;👼 박병헌(조장,ML,Readme)  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;👼 김현재(ML)  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;👼 변가원(DL,Readme)  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;👼 김정훈(DL)  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;   | 
 |------------------------------------------|--------------------------------------|------------------------------------------|-----------------------------------|
 </div>
 
@@ -285,7 +285,7 @@ Yes는 35507개, No는 14245개 이고, 35507/(14245+35507) = 0.71 이다.
 <br>
 
 <h3>👼박병헌</h3>
-<hr> 
+<hr> ML 모델 학습을 위해 데이터 분석을 수행하며, 데이터 분석의 중요성을 깨닫고 실제 경험으로 데이터 분석 역량을 키울 수 있었다. 
 <br><br>
 <h3>👼김현재</h3>
 <hr> 
