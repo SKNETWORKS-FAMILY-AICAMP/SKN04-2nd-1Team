@@ -36,7 +36,7 @@ data['ChargeBurden'] = np.where(
 # 4. 신용 등급 레이블 (Credit Rating Category)
 # 'CreditRating'을 기준으로 신용 등급을 두 그룹으로 나눔
 data['CreditCategory'] = np.where(
-    data['CreditRating'] > data['CreditRating'].median(), 
+    data['CreditRating'] < 6,
     'High Credit', 'Low Credit'
 )
 
