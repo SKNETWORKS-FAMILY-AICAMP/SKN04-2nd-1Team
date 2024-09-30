@@ -2,6 +2,7 @@ import torch
 from torch.utils.data import DataLoader, Dataset
 import lightning as L
 
+
 class CostomerDataset(Dataset):
     def __init__(self, data):
         super().__init__()
